@@ -54,6 +54,14 @@
   .tag.warn { color: var(--warn); } .tag.ok { color: var(--ok); }
   #log { margin-top: 14px; font-size: 13px; color: var(--ok); }
   #log div::before { content: "✓ "; }
+  .howto { background: var(--card); border: 1px solid var(--accent); border-radius: 12px; padding: 12px 14px; margin-bottom: 16px; }
+  .howto h2 { font-size: 15px; margin: 0 0 6px; color: var(--accent); }
+  .howto ol { margin: 0; padding-left: 20px; }
+  .howto .sub { font-size: 13px; color: var(--sub); margin: 6px 0 0; }
+  #inapp { display: none; background: #fff4e5; color: #7a3e00; border: 1px solid var(--warn); border-radius: 12px;
+    padding: 12px 14px; margin-bottom: 16px; font-size: 14px; }
+  #inapp.show { display: block; }
+  #inapp strong { display: block; margin-bottom: 4px; }
   .cmp { margin-top: 28px; }
   .cmp h2 { font-size: 16px; margin: 0 0 8px; }
   .cmp table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); font-size: 13px; }
@@ -72,6 +80,21 @@
 <main>
   <h1>スマホの写真もOK！<br>どこでも個人情報削除ツール</h1>
   <p class="lead">スマホ・パソコンのブラウザで、JPEG / PNG 写真から位置情報（GPS）・撮影機器・撮影日時などの個人情報を削除します。JPEGも再圧縮しないので画質は変わりません。</p>
+
+  <div id="inapp" role="alert">
+    <strong>⚠ アプリ内のブラウザで開いています</strong>
+    LINE などのアプリ内ブラウザでは、画像を保存できないことがあります。このページのURLをコピーして、<b>Chrome（Android）または Safari（iPhone）</b>などの通常のブラウザで開き直してください。
+  </div>
+
+  <section class="howto" aria-label="使い方">
+    <h2>📱 使い方（3ステップ）</h2>
+    <ol>
+      <li><b>ブラウザで開く</b>：Chrome（Android）・Safari（iPhone）・パソコンのブラウザで、このページを開きます。</li>
+      <li><b>写真を選ぶ</b>：下の枠を押して、写真を選びます（複数可）。</li>
+      <li><b>保存する</b>：「保存して破棄」を押すと、個人情報を削除した写真が保存されます。</li>
+    </ol>
+    <p class="sub">※ LINE・Instagram などのアプリ内ブラウザでは、保存できない場合があります。必ず通常のブラウザで開いてください。</p>
+  </section>
 
   <section class="privacy" aria-label="プライバシー">
     <h2>🔒 あなたの画像は、サーバーに送信も保存もされません</h2>
@@ -222,6 +245,11 @@ function stripPng(buf) {
 
 // ---------- UI ----------
 const $ = id => document.getElementById(id);
+
+// LINE・Instagram・Facebook等のアプリ内ブラウザでは保存できないことがあるため警告を出す
+if (/Line\/|Instagram|FBAN|FBAV|FB_IAB|Twitter|MicroMessenger|KAKAOTALK/i.test(navigator.userAgent)) {
+  $("inapp").classList.add("show");
+}
 const items = [];
 
 function describe(f) {
