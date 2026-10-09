@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- 通信を技術的に禁止: 画像を外部へ送信することはできません -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src blob:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src 'none'; form-action 'none'; base-uri 'none'">
-<title>画像の位置情報リムーバー</title>
+<title>スマホの写真もOK！どこでも個人情報削除ツール</title>
 <style>
   :root {
     --bg: #f6f7f9; --card: #fff; --text: #1d2330; --sub: #667085; --line: #e2e5ea;
@@ -54,14 +54,24 @@
   .tag.warn { color: var(--warn); } .tag.ok { color: var(--ok); }
   #log { margin-top: 14px; font-size: 13px; color: var(--ok); }
   #log div::before { content: "✓ "; }
+  .cmp { margin-top: 28px; }
+  .cmp h2 { font-size: 16px; margin: 0 0 8px; }
+  .cmp table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); font-size: 13px; }
+  .cmp th, .cmp td { border: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; }
+  .cmp thead th { background: var(--bg); }
+  .cmp thead th.us { color: var(--ok); }
+  .cmp tbody th { width: 7em; font-weight: 600; }
+  .cmp thead th small { display: block; font-weight: 400; color: var(--sub); }
+  .cmp td.us { background: var(--okbg); }
+  .cmp p { font-size: 13px; color: var(--sub); margin: 8px 0 0; }
   .note { margin-top: 28px; font-size: 13px; color: var(--sub); }
   .note ul { padding-left: 18px; margin: 4px 0; }
 </style>
 </head>
 <body>
 <main>
-  <h1>画像の位置情報リムーバー</h1>
-  <p class="lead">JPEG / PNG から位置情報（GPS）・撮影機器・撮影日時などのメタデータを削除します。JPEGも再圧縮しないので画質は変わりません。</p>
+  <h1>スマホの写真もOK！<br>どこでも個人情報削除ツール</h1>
+  <p class="lead">スマホ・パソコンのブラウザで、JPEG / PNG 写真から位置情報（GPS）・撮影機器・撮影日時などの個人情報を削除します。JPEGも再圧縮しないので画質は変わりません。</p>
 
   <section class="privacy" aria-label="プライバシー">
     <h2>🔒 あなたの画像は、サーバーに送信も保存もされません</h2>
@@ -86,6 +96,21 @@
   </div>
   <ul id="list" class="list"></ul>
   <div id="log" aria-live="polite"></div>
+
+  <section class="cmp" aria-label="Windows標準機能との違い">
+    <h2>Windows標準機能との違い</h2>
+    <table>
+      <thead><tr><th></th><th>Windows標準<small>プロパティ→詳細→「プロパティや個人情報を削除」</small></th><th class="us">このツール</th></tr></thead>
+      <tbody>
+        <tr><th>使える端末</th><td>Windowsパソコンのみ</td><td class="us"><b>スマホ・タブレット・Mac・Windows</b>など、ブラウザがあれば使えます</td></tr>
+        <tr><th>削除する項目</th><td>削除する項目を自分で選ぶ（または「可能なすべて」）</td><td class="us">検出した項目を表示し、<b>自動ですべて削除</b></td></tr>
+        <tr><th>削除結果の確認</th><td>削除後に、自分で詳細タブを開いて確認</td><td class="us"><b>「検出 → 削除済み」</b>を画面に表示</td></tr>
+        <tr><th>元の写真</th><td>「元ファイルから削除」か「コピーを作成」を選ぶ</td><td class="us">元の写真は変更せず、<b>削除済みのコピーを保存</b></td></tr>
+        <tr><th>データの扱い</th><td>パソコン内で処理</td><td class="us">端末内で処理。保存した瞬間に<b>元データをメモリから破棄</b></td></tr>
+      </tbody>
+    </table>
+    <p>Windowsのパソコンだけで使う場合は、標準機能でも手軽に削除できます。スマホで撮った写真をそのまま処理したいとき、結果を目で確認したいときに、このツールが便利です。</p>
+  </section>
 
   <div class="note">
     <p>仕組みと注意点</p>
